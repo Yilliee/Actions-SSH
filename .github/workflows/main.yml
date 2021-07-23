@@ -14,6 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
+      - name: Environment Setup
+        run: |
+          bash setup_env
       - name: Set Git Configs & Secrets
         run: |
           git config --global user.email ${GitHubMail}
@@ -36,9 +39,6 @@ jobs:
               TCPKeepAlive yes
               IdentitiesOnly yes
           EOF
-      - name: Environment Setup
-        run: |
-          bash setup_env
       - name: SSH connection to Actions
         continue-on-error: true
         timeout-minutes: 340
